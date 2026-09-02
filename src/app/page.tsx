@@ -27,7 +27,7 @@ export default function Home() {
           </div>
         </ProjectSection>
         <ProjectSection id="foundation" title="设计基础">
-          <div className="grid gap-0 sm:grid-cols-3 sm:gap-5">
+          <div className="min-w-0 overflow-x-clip">
             {designProjects.map((project) => (
               <CompactProjectCard key={project.id} project={project} />
             ))}

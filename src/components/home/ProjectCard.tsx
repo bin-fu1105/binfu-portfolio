@@ -105,17 +105,66 @@ type CompactProjectCardProps = {
   project: DesignProject;
 };
 
-export function CompactProjectCard({ project }: CompactProjectCardProps) {
+function FoundationImage({
+  src,
+  alt,
+}: {
+  src: string;
+  alt: string;
+}) {
   return (
-    <article className="border-t border-line py-5 sm:border sm:border-line sm:p-6">
-      <h3 className="text-base font-medium tracking-tight text-ink">
+    <figure className="min-w-0 w-full">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={src}
+        alt={alt}
+        width={2400}
+        height={848}
+        loading="lazy"
+        decoding="async"
+        className="block h-auto w-full max-w-full"
+      />
+    </figure>
+  );
+}
+
+export function CompactProjectCard({ project }: CompactProjectCardProps) {
+  const hero =
+    project.images.find((image) => image.hero) ?? project.images[0];
+  const supporting = project.images.filter((image) => image !== hero);
+
+  return (
+    <article className="border-t border-line py-8 first:border-t-0 first:pt-0 sm:py-10">
+      <h3 className="text-base font-medium tracking-tight text-ink sm:text-lg">
         {project.title}
       </h3>
+      {project.subtitle ? (
+        <p className="mt-1 text-sm text-ink-muted">{project.subtitle}</p>
+      ) : null}
       <div className="mt-3 flex flex-wrap gap-2">
         {project.directions.map((direction) => (
           <Tag key={direction}>{direction}</Tag>
         ))}
       </div>
+
+      <div className="mt-5 min-w-0 space-y-4 sm:mt-6 sm:space-y-5">
+        <FoundationImage src={hero.src} alt={hero.alt} />
+        {supporting.length > 0 ? (
+          <div className="grid min-w-0 grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5">
+            {supporting.map((image) => (
+              <FoundationImage
+                key={image.src}
+                src={image.src}
+                alt={image.alt}
+              />
+            ))}
+          </div>
+        ) : null}
+      </div>
+
+      <p className="mt-5 max-w-3xl text-sm leading-7 text-ink-muted">
+        {project.description}
+      </p>
     </article>
   );
 }

@@ -107,27 +107,88 @@ export const aiProjects: AiProject[] = [
   },
 ];
 
+export type DesignProjectImage = {
+  src: string;
+  alt: string;
+  hero?: boolean;
+};
+
 export type DesignProject = {
   id: string;
   title: string;
+  subtitle?: string;
   directions: string[];
+  description: string;
+  images: DesignProjectImage[];
 };
 
 export const designProjects: DesignProject[] = [
   {
+    id: "see-sea",
+    title: "See Sea",
+    subtitle: "海洋塑料互动展览",
+    directions: ["信息可视化", "空间设计", "交互展示"],
+    description:
+      "围绕海洋塑料污染进行研究，通过数据可视化、互动装置与空间叙事，将复杂环境议题转化为可感知的展览体验。",
+    images: [
+      {
+        src: "/projects/design-foundation/see-sea-06.webp",
+        alt: "See Sea 海洋塑料互动展览主视觉",
+        hero: true,
+      },
+      {
+        src: "/projects/design-foundation/see-sea-01.webp",
+        alt: "See Sea 展览研究与概念页面",
+      },
+      {
+        src: "/projects/design-foundation/see-sea-04.webp",
+        alt: "See Sea 展览结构与展示页面",
+      },
+    ],
+  },
+  {
     id: "children-hearing",
     title: "儿童听觉教育产品",
-    directions: ["用户研究", "UX/UI", "交互原型", "可用性测试"],
+    directions: ["用户研究", "UX/UI", "交互原型"],
+    description:
+      "针对听力障碍儿童课堂学习场景开展用户研究、用户旅程与功能架构设计，并完成低保真原型与可用性测试。",
+    images: [
+      {
+        src: "/projects/design-foundation/hearing-10.webp",
+        alt: "儿童听觉教育产品结果与主视觉",
+        hero: true,
+      },
+      {
+        src: "/projects/design-foundation/hearing-07.webp",
+        alt: "儿童听觉教育产品研究与洞察页面",
+      },
+      {
+        src: "/projects/design-foundation/hearing-09.webp",
+        alt: "儿童听觉教育产品流程与原型页面",
+      },
+    ],
   },
   {
     id: "sleep-light",
     title: "儿童睡眠灯",
     directions: ["产品设计", "交互设计", "Arduino 原型"],
-  },
-  {
-    id: "see-sea",
-    title: "See Sea｜海洋塑料互动展览",
-    directions: ["信息设计", "数据可视化", "空间设计", "互动展示"],
+    description:
+      "针对儿童睡眠与独立入睡场景进行研究，设计亮度调节与互动反馈功能，并使用 Arduino 完成功能原型验证。",
+    images: [
+      {
+        src: "/projects/design-foundation/sleep-lamp-14.webp",
+        alt: "儿童睡眠灯结果与主视觉",
+        hero: true,
+      },
+      {
+        src: "/projects/design-foundation/sleep-lamp-11.webp",
+        alt: "儿童睡眠灯研究与场景页面",
+      },
+      {
+        src: "/projects/design-foundation/sleep-lamp-13.webp",
+        alt: "儿童睡眠灯产品与交互页面",
+      },
+    ],
   },
 ];
 
