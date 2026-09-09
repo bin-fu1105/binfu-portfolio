@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { AiProject, DesignProject } from "@/content/site";
+import type { AiProject, DesignProject, ExperienceProject } from "@/content/site";
 import { Tag } from "../ui/Tag";
 
 function FlowList({ steps }: { steps: string[] }) {
@@ -166,5 +166,56 @@ export function CompactProjectCard({ project }: CompactProjectCardProps) {
         {project.description}
       </p>
     </article>
+  );
+}
+
+type ExperienceProjectCardProps = {
+  project: ExperienceProject;
+  index?: number;
+};
+
+export function ExperienceProjectCard({
+  project,
+  index = 0,
+}: ExperienceProjectCardProps) {
+  return (
+    <Link
+      href={project.href}
+      className="group block border-t border-line py-8 first:border-t-0 first:pt-0 sm:py-10 sm:first:pt-0"
+      aria-label={`${project.title}，查看案例`}
+    >
+      <article>
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <p className="text-xs tracking-wide text-ink-muted">
+            {String(index + 1).padStart(2, "0")}
+          </p>
+          <Tag tone="accent">{project.status}</Tag>
+        </div>
+        <h3 className="mt-4 text-lg font-medium tracking-tight text-ink transition-colors group-hover:text-accent sm:text-xl">
+          {project.title}
+        </h3>
+        <p className="mt-1 text-sm text-ink-muted">{project.subtitle}</p>
+        <p className="mt-3 max-w-3xl text-sm leading-7 text-ink-muted sm:text-base sm:leading-7">
+          {project.problem}
+        </p>
+        <div className="mt-5">
+          <p className="text-xs text-ink-muted">{project.flowLabel}</p>
+          <FlowList steps={project.flow} />
+        </div>
+        <p className="mt-4 text-sm text-ink-muted">{project.stack}</p>
+        <figure className="mt-6 min-w-0 w-full">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={project.image.src}
+            alt={project.image.alt}
+            width={2482}
+            height={1300}
+            loading="lazy"
+            decoding="async"
+            className="block h-auto w-full max-w-full"
+          />
+        </figure>
+      </article>
+    </Link>
   );
 }

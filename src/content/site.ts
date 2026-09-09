@@ -192,6 +192,41 @@ export const designProjects: DesignProject[] = [
   },
 ];
 
+export type ExperienceProject = {
+  id: string;
+  title: string;
+  subtitle: string;
+  problem: string;
+  status: string;
+  flow: string[];
+  flowLabel: string;
+  stack: string;
+  href: string;
+  image: {
+    src: string;
+    alt: string;
+  };
+};
+
+export const vrProjects: ExperienceProject[] = [
+  {
+    id: "healing-through-nature",
+    title: "自然疗愈｜Healing Through Nature",
+    subtitle: "硕士毕业设计",
+    problem:
+      "通过渐进式自然环境互动支持压力缓解的 VR 体验。核心不是观看风景，而是用户研究 → 渐进式互动 → 渐进式沉浸 → 用户能动性 → 压力缓解。",
+    status: "毕业设计",
+    flow: ["暴风森林", "光之花", "疗愈之湖", "疗愈花园"],
+    flowLabel: "体验路径",
+    stack: "VR / 交互设计 / 体验设计 · Unity",
+    href: "/projects/healing-through-nature",
+    image: {
+      src: "/projects/healing-through-nature/hero.jpeg",
+      alt: "自然疗愈，疗愈花园 Unity 场景",
+    },
+  },
+];
+
 export const navItems = [
   { href: "/#work", label: "作品" },
   { href: "/#about", label: "关于" },

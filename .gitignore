@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local graduation-project binaries copied for playback/download
+/public/projects/healing-through-nature/*.mp4
+/public/projects/healing-through-nature/*.apk

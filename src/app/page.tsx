@@ -3,11 +3,12 @@ import { Hero } from "@/components/home/Hero";
 import { Positioning } from "@/components/home/Positioning";
 import {
   CompactProjectCard,
+  ExperienceProjectCard,
   FeaturedProjectCard,
 } from "@/components/home/ProjectCard";
 import { ProjectSection } from "@/components/home/ProjectSection";
 import { Container } from "@/components/layout/Container";
-import { aiProjects, designProjects } from "@/content/site";
+import { aiProjects, designProjects, vrProjects } from "@/content/site";
 
 export default function Home() {
   return (
@@ -19,6 +20,17 @@ export default function Home() {
           <div>
             {aiProjects.map((project, index) => (
               <FeaturedProjectCard
+                key={project.id}
+                project={project}
+                index={index}
+              />
+            ))}
+          </div>
+        </ProjectSection>
+        <ProjectSection id="vr" title="VR / 交互设计">
+          <div>
+            {vrProjects.map((project, index) => (
+              <ExperienceProjectCard
                 key={project.id}
                 project={project}
                 index={index}
