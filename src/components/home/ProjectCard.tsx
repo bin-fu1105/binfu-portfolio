@@ -1,5 +1,10 @@
 import Link from "next/link";
-import type { AiProject, DesignProject, ExperienceProject } from "@/content/site";
+import type {
+  AiProject,
+  DesignProject,
+  ExperienceProject,
+  FeaturedWork,
+} from "@/content/site";
 import { Tag } from "../ui/Tag";
 
 function FlowList({ steps }: { steps: string[] }) {
@@ -37,7 +42,10 @@ export function FeaturedProjectCard({
         <p className="text-xs tracking-wide text-ink-muted">
           {String(index + 1).padStart(2, "0")}
         </p>
-        {project.status ? <Tag tone="accent">{project.status}</Tag> : null}
+        <div className="flex flex-wrap gap-2">
+          {project.listingTag ? <Tag>{project.listingTag}</Tag> : null}
+          {project.status ? <Tag tone="accent">{project.status}</Tag> : null}
+        </div>
       </div>
       <h3
         className={`mt-4 text-lg font-medium tracking-tight text-ink sm:text-xl ${
@@ -89,8 +97,9 @@ export function FeaturedProjectCard({
   if (project.href) {
     return (
       <Link
+        id={project.id}
         href={project.href}
-        className={`group block ${featuredFrameClass}`}
+        className={`group block scroll-mt-20 ${featuredFrameClass}`}
         aria-label={`${project.title}，查看案例`}
       >
         <article>{body}</article>
@@ -98,11 +107,86 @@ export function FeaturedProjectCard({
     );
   }
 
-  return <article className={featuredFrameClass}>{body}</article>;
+  return (
+    <article id={project.id} className={`scroll-mt-20 ${featuredFrameClass}`}>
+      {body}
+    </article>
+  );
+}
+
+type FeaturedWorkCardProps = {
+  project: FeaturedWork;
+  index: number;
+};
+
+export function FeaturedWorkCard({
+  project,
+  index,
+}: FeaturedWorkCardProps) {
+  const body = (
+    <article>
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <p className="text-xs tracking-wide text-ink-muted">
+          {String(index + 1).padStart(2, "0")}
+        </p>
+        <Tag tone="accent">{project.status}</Tag>
+      </div>
+      <h3
+        className={`mt-4 text-lg font-medium tracking-tight text-ink sm:text-xl ${
+          project.href ? "transition-colors group-hover:text-accent" : ""
+        }`}
+      >
+        {project.title}
+      </h3>
+      {project.subtitle ? (
+        <p className="mt-1 text-sm text-ink-muted">{project.subtitle}</p>
+      ) : null}
+      <p className="mt-3 max-w-3xl text-sm leading-7 text-ink-muted sm:text-base sm:leading-7">
+        {project.problem}
+      </p>
+      <div className="mt-4 flex flex-wrap gap-2">
+        {project.tags.map((tag) => (
+          <Tag key={tag}>{tag}</Tag>
+        ))}
+      </div>
+      <figure className="mt-6 min-w-0 w-full">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={project.image.src}
+          alt={project.image.alt}
+          width={1440}
+          height={900}
+          loading="lazy"
+          decoding="async"
+          className="block h-auto w-full max-w-full"
+        />
+      </figure>
+    </article>
+  );
+
+  if (project.href) {
+    return (
+      <Link
+        id={project.id}
+        href={project.href}
+        className={`group block scroll-mt-20 ${featuredFrameClass}`}
+        aria-label={`${project.title}，查看案例`}
+      >
+        {body}
+      </Link>
+    );
+  }
+
+  return (
+    <div id={project.id} className={`scroll-mt-20 ${featuredFrameClass}`}>
+      {body}
+    </div>
+  );
 }
 
 type CompactProjectCardProps = {
   project: DesignProject;
+  index?: number;
 };
 
 function FoundationImage({
@@ -128,14 +212,29 @@ function FoundationImage({
   );
 }
 
-export function CompactProjectCard({ project }: CompactProjectCardProps) {
+export function CompactProjectCard({
+  project,
+  index,
+}: CompactProjectCardProps) {
   const hero =
     project.images.find((image) => image.hero) ?? project.images[0];
   const supporting = project.images.filter((image) => image !== hero);
 
   return (
-    <article className="border-t border-line py-8 first:border-t-0 first:pt-0 sm:py-10">
-      <h3 className="text-base font-medium tracking-tight text-ink sm:text-lg">
+    <article
+      id={project.id}
+      className="scroll-mt-20 border-t border-line py-8 first:border-t-0 first:pt-0 sm:py-10"
+    >
+      {typeof index === "number" ? (
+        <p className="text-xs tracking-wide text-ink-muted">
+          {String(index + 1).padStart(2, "0")}
+        </p>
+      ) : null}
+      <h3
+        className={`text-base font-medium tracking-tight text-ink sm:text-lg ${
+          typeof index === "number" ? "mt-3" : ""
+        }`}
+      >
         {project.title}
       </h3>
       {project.subtitle ? (
@@ -180,8 +279,9 @@ export function ExperienceProjectCard({
 }: ExperienceProjectCardProps) {
   return (
     <Link
+      id={project.id}
       href={project.href}
-      className="group block border-t border-line py-8 first:border-t-0 first:pt-0 sm:py-10 sm:first:pt-0"
+      className="group block scroll-mt-20 border-t border-line py-8 first:border-t-0 first:pt-0 sm:py-10 sm:first:pt-0"
       aria-label={`${project.title}，查看案例`}
     >
       <article>

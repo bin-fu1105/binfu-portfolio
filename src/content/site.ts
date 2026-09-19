@@ -1,9 +1,9 @@
 export const profile = {
   name: "富彬",
   identity: "应届毕业生",
-  role: "AI 产品设计 / AI UX",
+  role: "UX / 交互设计师",
   positioning:
-    "设计背景的 AI 产品设计方向候选人。通过用户研究、产品设计、UX/UI 和 AI workflow，把真实用户问题转化为可运行的 AI 产品。",
+    "UX / 交互 / 产品体验设计师。通过用户研究、交互设计和产品思维，把真实用户问题转化为可验证的体验。AI 用于增强产品与原型能力，而不是身份本身。",
   phone: "15303626850",
   email: "fub_24@163.com",
   github: "bin-fu1105",
@@ -27,16 +27,16 @@ export const education = [
 
 export const positioningPoints = [
   {
-    title: "设计训练",
-    body: "环境设计本科 + 数字设计未来硕士",
+    title: "设计基础",
+    body: "环境设计本科 + 数字设计未来硕士。从空间与展览训练观察、研究与判断。",
   },
   {
-    title: "产品实践",
-    body: "3 个 AI 产品；其中 1 个可运行 MVP，1 个已做 5 人早期测试",
+    title: "UX / 交互",
+    body: "用户研究、问题定义、交互流程、原型与测试。先看清用户如何做决定。",
   },
   {
-    title: "工作方式",
-    body: "用户问题 → 产品流程 → 可运行原型，不只做视觉",
+    title: "产品与 AI 能力",
+    body: "能把体验做成可运行产品，并在需要时用 AI 增强判断，而不是替代设计过程。",
   },
 ] as const;
 
@@ -45,6 +45,7 @@ export type AiProject = {
   title: string;
   problem: string;
   status?: string;
+  listingTag?: string;
   flow?: string[];
   stack?: string;
   notes?: string[];
@@ -57,6 +58,7 @@ export const aiProjects: AiProject[] = [
   {
     id: "learning-gap",
     title: "AI 学习差距助手",
+    listingTag: "AI 产品实践",
     problem:
       "学习新技能时，用户经常不知道自己已经掌握什么、真正缺少什么，每次学习新内容都容易从头开始。",
     status: "可运行 MVP",
@@ -77,6 +79,7 @@ export const aiProjects: AiProject[] = [
   {
     id: "portfolio-assistant",
     title: "AI 作品集助手",
+    listingTag: "AI 产品实践",
     problem:
       "设计学生申请研究生时经常缺少作品集选题想法，同时需要逐个寻找学校官网和优秀作品集案例。",
     status: "5 人早期用户测试",
@@ -90,6 +93,7 @@ export const aiProjects: AiProject[] = [
   {
     id: "career-explorer",
     title: "AI 职业探索助手",
+    listingTag: "AI 产品实践",
     problem:
       "传统招聘平台主要依赖固定筛选条件，用户无法用自然语言完整表达自己的岗位、地点、薪资、技能等需求，也难以根据个人技能获得综合职业分析。",
     status: "Working Prototype",
@@ -148,7 +152,7 @@ export const designProjects: DesignProject[] = [
   },
   {
     id: "children-hearing",
-    title: "儿童听觉教育产品",
+    title: "儿童听障教育",
     directions: ["用户研究", "UX/UI", "交互原型"],
     description:
       "针对听力障碍儿童课堂学习场景开展用户研究、用户旅程与功能架构设计，并完成低保真原型与可用性测试。",
@@ -170,7 +174,7 @@ export const designProjects: DesignProject[] = [
   },
   {
     id: "sleep-light",
-    title: "儿童睡眠灯",
+    title: "儿童睡眠",
     directions: ["产品设计", "交互设计", "Arduino 原型"],
     description:
       "针对儿童睡眠与独立入睡场景进行研究，设计亮度调节与互动反馈功能，并使用 Arduino 完成功能原型验证。",
@@ -227,8 +231,81 @@ export const vrProjects: ExperienceProject[] = [
   },
 ];
 
+export type FeaturedWork = {
+  id: string;
+  title: string;
+  subtitle?: string;
+  problem: string;
+  status: string;
+  tags: string[];
+  href?: string;
+  image: {
+    src: string;
+    alt: string;
+  };
+};
+
+export const roomwiseProject: FeaturedWork = {
+  id: "roomwise",
+  title: "住好 / Roomwise",
+  subtitle: "空间规划与家居决策",
+  problem:
+    "帮助用户把喜欢的空间灵感，转化成适合自己房间、预算和生活方式的可执行方案。",
+  status: "可运行原型 · 5 人测试",
+  tags: ["UX", "交互设计", "产品体验"],
+  href: "/projects/roomwise",
+  image: {
+    src: "/projects/roomwise/compatibility.png",
+    alt: "住好空间适配界面：判断结果、解释与调整建议",
+  },
+};
+
+export const featuredWorks: FeaturedWork[] = [
+  roomwiseProject,
+  {
+    id: "see-sea",
+    title: "See Sea",
+    subtitle: "海洋塑料互动展览",
+    problem:
+      "围绕海洋塑料污染进行研究，通过数据可视化、互动装置与空间叙事，将复杂环境议题转化为可感知的展览体验。",
+    status: "设计基础",
+    tags: ["信息可视化", "空间设计", "交互展示"],
+    href: "/projects#see-sea",
+    image: {
+      src: "/projects/design-foundation/see-sea-06.webp",
+      alt: "See Sea 海洋塑料互动展览主视觉",
+    },
+  },
+  {
+    id: "children-hearing",
+    title: "儿童听障教育",
+    subtitle: "课堂学习场景",
+    problem:
+      "针对听力障碍儿童课堂学习场景开展用户研究、用户旅程与功能架构设计，并完成低保真原型与可用性测试。",
+    status: "设计基础",
+    tags: ["用户研究", "UX/UI", "交互原型"],
+    href: "/projects#children-hearing",
+    image: {
+      src: "/projects/design-foundation/hearing-10.webp",
+      alt: "儿童听障教育产品结果与主视觉",
+    },
+  },
+];
+
+export const projectOrder = [
+  "roomwise",
+  "see-sea",
+  "children-hearing",
+  "sleep-light",
+  "healing-through-nature",
+  "career-explorer",
+  "portfolio-assistant",
+  "learning-gap",
+] as const;
+
 export const navItems = [
   { href: "/#work", label: "作品" },
+  { href: "/projects", label: "全部作品" },
   { href: "/#about", label: "关于" },
   { href: "#contact", label: "联系" },
 ] as const;

@@ -5,6 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:china": "node scripts/build-china.mjs",
+    "deploy:china": "node scripts/deploy-china.mjs",
     "start": "next start",
     "lint": "eslint"
   },
