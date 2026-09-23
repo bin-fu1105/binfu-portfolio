@@ -11,7 +11,20 @@ export const roomwiseCase = {
     "住好 / Roomwise：把喜欢的空间灵感，转化成适合自己房间、预算和生活方式的可执行方案。UX / 交互设计 Case Study。",
 } as const;
 
+export const roomwiseInteractionDemo = {
+  src: "/video/Roomwise-UI-Interaction-Demo-2026.mp4",
+  title: "Interaction Demo",
+  subtitle: "UI State & Feedback",
+  caption:
+    "点击“为什么建议调整？”后，展开原因与建议，帮助用户理解适配判断。",
+} as const;
+
 export const roomwiseScreenshots = {
+  hero: {
+    src: "/projects/roomwise/main.png",
+    label: "空间适配：判断、解释与调整建议",
+    filename: "main.png",
+  },
   compatibility: {
     src: "/projects/roomwise/compatibility.png",
     label: "空间适配：判断、解释与调整建议",

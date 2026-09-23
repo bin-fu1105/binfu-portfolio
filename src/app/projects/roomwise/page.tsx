@@ -15,9 +15,11 @@ import {
   productFlow,
   researchObservations,
   roomwiseCase,
+  roomwiseInteractionDemo,
   roomwiseScreenshots,
   testFindings,
 } from "@/content/roomwise";
+import { publicFileExists } from "@/lib/public-file";
 
 export const metadata: Metadata = {
   title: roomwiseCase.metadataTitle,
@@ -46,6 +48,26 @@ export default function RoomwiseCaseStudyPage() {
           status={roomwiseCase.status}
         />
 
+        <a
+          href="/projects/roomwise/visual-system"
+          className="group mt-6 flex max-w-xl items-start justify-between gap-4 rounded-sm border border-[#D9CFC0] bg-[#F3EEE6] px-4 py-3.5 transition-colors duration-150 hover:bg-[#EDE6DA] sm:mt-8 sm:px-5 sm:py-4"
+        >
+          <span className="min-w-0">
+            <span className="block text-sm font-medium text-ink">
+              Visual System / 组件规范
+            </span>
+            <span className="mt-1 block text-xs leading-5 text-ink-muted">
+              从「住好」界面提取的组件与视觉规范
+            </span>
+          </span>
+          <span
+            className="shrink-0 text-base leading-none text-ink transition-transform duration-150 group-hover:translate-x-0.5"
+            aria-hidden
+          >
+            →
+          </span>
+        </a>
+
         <CaseStudySection title="01 / 项目概览">
           <p className="max-w-2xl text-base leading-7 text-ink">
             灵感越来越容易获得，但用户不知道如何判断什么真正适合自己的空间。
@@ -73,7 +95,7 @@ export default function RoomwiseCaseStudyPage() {
             </li>
           </ul>
           <div className="mt-10">
-            <ProductScreenshot {...roomwiseScreenshots.compatibility} />
+            <ProductScreenshot {...roomwiseScreenshots.hero} />
           </div>
         </CaseStudySection>
 
@@ -160,6 +182,37 @@ export default function RoomwiseCaseStudyPage() {
           </div>
         </CaseStudySection>
 
+        <CaseStudySection title={roomwiseInteractionDemo.title}>
+          <p className="text-sm tracking-wide text-ink-muted">
+            {roomwiseInteractionDemo.subtitle}
+          </p>
+          <figure className="mt-6 max-w-3xl">
+            {publicFileExists(roomwiseInteractionDemo.src) ? (
+              <div className="overflow-hidden rounded-sm border border-line bg-[#f3f1ec]">
+                <video
+                  controls
+                  muted
+                  playsInline
+                  preload="metadata"
+                  className="aspect-video w-full bg-[#f3f1ec] object-contain"
+                >
+                  <source
+                    src={roomwiseInteractionDemo.src}
+                    type="video/mp4"
+                  />
+                </video>
+              </div>
+            ) : (
+              <div className="flex aspect-video w-full items-center justify-center rounded-sm border border-line bg-[#f3f1ec]">
+                <p className="text-sm text-ink-muted">Interaction Demo</p>
+              </div>
+            )}
+            <figcaption className="mt-3 max-w-2xl text-sm leading-6 text-ink-muted">
+              {roomwiseInteractionDemo.caption}
+            </figcaption>
+          </figure>
+        </CaseStudySection>
+
         <CaseStudySection title="06 / 智能分析作为增强">
           <Prose>
             <p>
@@ -235,10 +288,14 @@ export default function RoomwiseCaseStudyPage() {
             <ProductScreenshot {...roomwiseScreenshots.compatibility} />
             <ProductScreenshot {...roomwiseScreenshots.plan} />
           </div>
-          <ol className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <ol className="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-5 lg:gap-3">
             {finalFlow.map((item) => (
               <li key={item.key} className="min-w-0">
-                <ProductScreenshot {...roomwiseScreenshots[item.key]} />
+                <ProductScreenshot
+                  {...roomwiseScreenshots[item.key]}
+                  thumb
+                  thumbFit={item.key === "cover" ? "contain" : "cover"}
+                />
               </li>
             ))}
           </ol>

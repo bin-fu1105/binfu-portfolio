@@ -255,7 +255,7 @@ export const roomwiseProject: FeaturedWork = {
   tags: ["UX", "交互设计", "产品体验"],
   href: "/projects/roomwise",
   image: {
-    src: "/projects/roomwise/compatibility.png",
+    src: "/projects/roomwise/hero.jpg",
     alt: "住好空间适配界面：判断结果、解释与调整建议",
   },
 };
@@ -263,17 +263,17 @@ export const roomwiseProject: FeaturedWork = {
 export const featuredWorks: FeaturedWork[] = [
   roomwiseProject,
   {
-    id: "see-sea",
-    title: "See Sea",
-    subtitle: "海洋塑料互动展览",
+    id: "healing-through-nature",
+    title: "自然疗愈｜Healing Through Nature",
+    subtitle: "硕士毕业设计",
     problem:
-      "围绕海洋塑料污染进行研究，通过数据可视化、互动装置与空间叙事，将复杂环境议题转化为可感知的展览体验。",
-    status: "设计基础",
-    tags: ["信息可视化", "空间设计", "交互展示"],
-    href: "/projects#see-sea",
+      "通过渐进式自然环境互动支持压力缓解的 VR 体验。核心不是观看风景，而是用户研究 → 渐进式互动 → 渐进式沉浸 → 用户能动性 → 压力缓解。",
+    status: "毕业设计",
+    tags: ["VR", "交互设计", "体验设计"],
+    href: "/projects/healing-through-nature",
     image: {
-      src: "/projects/design-foundation/see-sea-06.webp",
-      alt: "See Sea 海洋塑料互动展览主视觉",
+      src: "/projects/healing-through-nature/hero.jpeg",
+      alt: "自然疗愈，疗愈花园 Unity 场景",
     },
   },
   {
@@ -290,17 +290,30 @@ export const featuredWorks: FeaturedWork[] = [
       alt: "儿童听障教育产品结果与主视觉",
     },
   },
+  {
+    id: "portfolio-assistant",
+    title: "AI 作品集助手",
+    problem:
+      "设计学生申请研究生时经常缺少作品集选题想法，同时需要逐个寻找学校官网和优秀作品集案例。",
+    status: "5 人早期用户测试",
+    tags: ["AI 产品实践"],
+    href: "/projects/ai-portfolio-assistant",
+    image: {
+      src: "/projects/ai-portfolio-assistant/portfolio-home.png",
+      alt: "AI 作品集助手产品首页",
+    },
+  },
 ];
 
 export const projectOrder = [
   "roomwise",
-  "see-sea",
-  "children-hearing",
-  "sleep-light",
   "healing-through-nature",
-  "career-explorer",
+  "children-hearing",
   "portfolio-assistant",
+  "sleep-light",
+  "career-explorer",
   "learning-gap",
+  "see-sea",
 ] as const;
 
 export const navItems = [
