@@ -37,7 +37,20 @@ Do not set the error document to index.html unless a nested project URL 404s.
 
 const deploy = spawnSync(
   "npx",
-  ["@cloudbase/cli", "hosting", "deploy", "./out", "-e", envId, "--ignore", "*.mp4,*.apk,.DS_Store"],
+  [
+    "--yes",
+    "--package=@cloudbase/cli",
+    "--",
+    "tcb",
+    "hosting",
+    "deploy",
+    "./out",
+    "-e",
+    envId,
+    // Keep Roomwise Interaction Demo mp4; still ignore large VR apk leftovers if any.
+    "--ignore",
+    "*.apk,.DS_Store,**/healing-through-nature/*.mp4",
+  ],
   {
     cwd: projectRoot,
     env: process.env,

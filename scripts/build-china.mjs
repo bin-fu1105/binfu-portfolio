@@ -31,7 +31,15 @@ function removeLargeMedia(dir) {
       continue;
     }
 
-    if (/\.(mp4|apk)$/i.test(name)) {
+    // Keep the small Roomwise Interaction Demo; still exclude large VR assets.
+    if (/\.apk$/i.test(name)) {
+      rmSync(fullPath);
+      continue;
+    }
+    if (
+      /\.mp4$/i.test(name) &&
+      name !== "Roomwise-UI-Interaction-Demo-2026.mp4"
+    ) {
       rmSync(fullPath);
     }
   }
@@ -46,6 +54,7 @@ const requiredPages = [
   "projects/ai-skill-gap-assistant/index.html",
   "projects/healing-through-nature/index.html",
   "projects/roomwise/index.html",
+  "projects/roomwise/visual-system/index.html",
 ];
 
 const missing = requiredPages.filter((page) => !existsSync(path.join(outDir, page)));
@@ -55,6 +64,17 @@ if (missing.length > 0) {
   for (const page of missing) {
     console.error(`  - ${page}`);
   }
+  process.exit(1);
+}
+
+const roomwiseDemo = path.join(
+  outDir,
+  "video",
+  "Roomwise-UI-Interaction-Demo-2026.mp4",
+);
+if (!existsSync(roomwiseDemo)) {
+  console.error("China static export is missing Roomwise Interaction Demo mp4:");
+  console.error(`  - ${roomwiseDemo}`);
   process.exit(1);
 }
 
